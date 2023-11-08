@@ -5,21 +5,21 @@ import { enableQueryData } from '../utils/dataDependency'
 import { getSorter, saveSorter } from '../utils/store'
 
 export default {
-  namespace: 'objectstorage',
+  ws: null,
+  namespace: 'objectStore',
   state: {
-    ws: null,
     data: [],
-    resourceType: 'objectstore',
+    resourceType: 'objectStore',
     socketStatus: 'closed',
     sorter: getSorter('objectstoreList.sorter'),
   },
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(location => {
-        if (enableQueryData(location.pathname, 'objectstore')) {
+        if (enableQueryData(location.pathname, 'objectStore')) {
           dispatch({
             type: 'query',
-            payload: location.pathname.startsWith('/objectstore') ? queryString.parse(location.search) : {},
+            payload: location.pathname.startsWith('/objectStore') ? queryString.parse(location.search) : {},
           })
         }
       })
@@ -52,7 +52,7 @@ export default {
       yield put({ type: 'query' })
     },
     *startWS({ payload }, { select }) {
-      let ws = yield select(state => state.objectstorage.ws)
+      let ws = yield select(state => state.objectStore.ws)
       if (ws) {
         ws.open()
       } else {
@@ -61,7 +61,7 @@ export default {
     },
     // eslint-disable-next-line no-unused-vars
     *stopWS({ payload }, { select }) {
-      let ws = yield select(state => state.objectstorage.ws)
+      let ws = yield select(state => state.objectStore.ws)
       if (ws) {
         ws.close(1000)
       }

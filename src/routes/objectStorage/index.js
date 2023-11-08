@@ -78,7 +78,7 @@ class ObjectStore extends React.Component {
   render() {
     const me = this
     const { dispatch, loading, location } = this.props
-    const { data, sorter } = this.props.objectstorage
+    const { data, sorter } = this.props.objectStore
     const { field, value } = queryString.parse(this.props.location.search)
 
     const settings = this.props.setting.data
@@ -133,7 +133,7 @@ class ObjectStore extends React.Component {
           createModalVisible: false,
         })
         dispatch({
-          type: 'objectstorage/create',
+          type: 'objectStore/create',
           payload: newObjectStore,
         })
       },
@@ -154,7 +154,7 @@ class ObjectStore extends React.Component {
           editModalVisible: false,
         })
         dispatch({
-          type: 'objectstorage/update',
+          type: 'objectStore/update',
           payload: record,
         })
       },
@@ -188,13 +188,13 @@ class ObjectStore extends React.Component {
       },
       deleteObjectStore: (record) => {
         dispatch({
-          type: 'objectstorage/delete',
+          type: 'objectStore/delete',
           payload: record,
         })
       },
       onSorterChange: (s) => {
         dispatch({
-          type: 'objectstorage/updateSorter',
+          type: 'objectStore/updateSorter',
           payload: { field: s.field, order: s.order, columnKey: s.columnKey },
         })
       },
@@ -247,7 +247,7 @@ class ObjectStore extends React.Component {
       selectedRows: this.state.selectedRows,
       deleteObjectStore: (record) => {
         dispatch({
-          type: 'objectstorage/bulkDelete',
+          type: 'objectStore/bulkDelete',
           payload: record,
           callback: () => {
             me.setState({
@@ -279,7 +279,7 @@ class ObjectStore extends React.Component {
 }
 
 ObjectStore.propTypes = {
-  objectstorage: PropTypes.object,
+  objectStore: PropTypes.object,
   loading: PropTypes.bool,
   location: PropTypes.object,
   dispatch: PropTypes.func,
@@ -288,5 +288,5 @@ ObjectStore.propTypes = {
 }
 
 export default connect(
-  ({ objectstorage, loading, setting, secret }) => ({ objectstorage, loading: loading.models.objectStore, setting, secret })
+  ({ objectStore, loading, setting, secret }) => ({ objectStore, loading: loading.models.objectStore, setting, secret })
 )(ObjectStore)

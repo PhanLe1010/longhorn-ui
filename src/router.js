@@ -123,7 +123,7 @@ const Routers = function ({ history, app }) {
             <Route path={`${path}engineimage/:id`} component={engineimageDetail} />
             <Route path={`${path}orphanedData`} component={orphanedData} />
             <Route path={`${path}systemBackups`} component={systemBackups} />
-            <Route path={`${path}objectstorage`} component={objectStorage} />
+            <Route path={`${path}objectStore`} component={objectStorage} />
             <Route component={notfound} />
           </Switch>
         </App>

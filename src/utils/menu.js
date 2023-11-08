@@ -31,7 +31,7 @@ module.exports = [
     icon: 'copy',
   },
   {
-    key: 'objectstorage',
+    key: 'objectStore',
     name: 'Object Storage',
     icon: 'build',
   },
